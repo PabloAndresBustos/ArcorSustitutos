@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" scontent="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/ejs-css/pages.css">
+    <title>Sustitutos</title>
+</head>
+
+<body>
+    <section>
+        <div class="centro">
+            <img src="imagenes/arcor2.jpg" alt="">
+            <h1>ARCOR SUSTITUTOS</h1>
+            <form action="/upload" method="post" enctype="multipart/form-data" id="formulario">
+                <label for="ingreso">Archivo a analizar</label>
+                <input type="file" name="ingreso" id="ingreso" onchange="obtenerArchivo()">
+                <button type="submit" id="boton">Enviar</button>
+            </form>
+            <div id="info">
+                <p></p>
+            </div>
+        </div>
+    </section>
+</body>
+<script src="/ejs-js/pages.js"></script>
+
+</html>
