@@ -2,7 +2,7 @@ const express = require('express');
 const path = require('path');
 const fs = require('fs');
 const { subir } = require('./multer');
-const { codigosIngreso, lecturaExcel, escrituraExcel } = require('./excel');
+const { lecturaExcel, escrituraExcel } = require('./excel');
 const { reemplazo } = require('./reemplazos');
 const router = express.Router();
 
@@ -13,9 +13,7 @@ router.get('/', (req, res) => {
 router.get('/download/:nombre', async (req, res) => {
     const nombre = req.params.nombre;
     const rutaInterna = path.join(__dirname, '..', 'codigos', nombre);
-    console.log(rutaInterna);
     const nombreOriginal = (nombre.split('_')[0] + ".xlsx");
-    console.log(nombreOriginal);
     const rutaOriginal = path.join(__dirname, '..', 'codigos', nombreOriginal);
 
     fs.access(rutaInterna, fs.constants.F_OK, (err) => {
@@ -46,6 +44,7 @@ router.get('/download/:nombre', async (req, res) => {
             })
         })
     })
+
 })
 
 router.post('/upload', subir.single('ingreso'), async (req, res) => {
@@ -54,7 +53,7 @@ router.post('/upload', subir.single('ingreso'), async (req, res) => {
     try {
         await lecturaExcel(ruta);
         await reemplazo();
-        await escrituraExcel(codigosIngreso, nombre);
+        await escrituraExcel(nombre);
         res.redirect(`/download/${nombre}_ED.xlsx`);
     } catch (error) {
         throw new Error("Error en la subida" + error)

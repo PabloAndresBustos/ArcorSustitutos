@@ -1,4 +1,4 @@
-const { codigosIngreso } = require("./excel");
+let { codigosIngreso } = require("./excel");
 
 const codigosViejos = [
     1013890,
