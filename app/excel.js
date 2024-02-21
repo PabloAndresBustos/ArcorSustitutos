@@ -35,7 +35,7 @@ async function escrituraExcel(nombre) {
             libro.sheet(0).cell("B" + `${i + 1}`).value(cantidades[i]);
         }
         console.log(codigosIngreso)
-        const ruta = path.join(__dirname, '../codigos');
+        const ruta = path.join(__dirname, '..', 'codigos');
         await libro.toFileAsync(`${ruta}/${nombre}_ED.xlsx`);
     } catch (error) {
         throw new Error("Error al escribir el nuevo archivo" + error);

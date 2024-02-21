@@ -3,7 +3,6 @@ const path = require('path');
 const fs = require('fs');
 const { subir } = require('./multer');
 const { lecturaExcel, escrituraExcel } = require('./excel');
-const { reemplazo } = require('./reemplazos');
 const router = express.Router();
 
 router.get('/', (req, res) => {
