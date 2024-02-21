@@ -1,4 +1,5 @@
 const excel = require('xlsx-populate');
+const { reemplazo } = require('./reemplazos');
 
 let codigosIngreso = [];
 let cantidades = [];
@@ -13,18 +14,10 @@ async function lecturaExcel(archivo) {
         //Buscamos cual es la cantidad de filas usadas
         const ultimaCelda = hoja.usedRange().endCell().rowNumber();
         //leemos los codigos ingresados
-        let codigosIngresados = await hoja.range(`A1:A${ultimaCelda}`).value();
+        codigosIngreso = await (hoja.range(`A1:A${ultimaCelda}`).value()).flat();
         //leemos las cantidades ingresadas
-        let cantidadesIngresadas = await hoja.range(`B1:B${ultimaCelda}`).value();
-
-        //Reducimos la [[]] a una lista con los codigos
-        codigosIngreso = await codigosIngresados.reduce((acc, lista) => {
-            return acc.concat(lista);
-        }, []);
-        //Reducimos la [[]] a una lista con las cantidades
-        cantidades = await cantidadesIngresadas.reduce((acc, lista) => {
-            return acc.concat(lista);
-        }, []);
+        cantidades = await (hoja.range(`B1:B${ultimaCelda}`).value()).flat();
+        console.log(codigosIngreso)
     } catch (error) {
         throw new Error("Error al leer el archivo" + error);
     }
@@ -34,11 +27,13 @@ async function lecturaExcel(archivo) {
 async function escrituraExcel(nombre) {
 
     try {
+        await reemplazo(codigosIngreso);
         const libro = await excel.fromBlankAsync();
         for (i = 0; i < codigosIngreso.length; i++) {
             libro.sheet(0).cell("A" + `${i + 1}`).value(codigosIngreso[i]);
             libro.sheet(0).cell("B" + `${i + 1}`).value(cantidades[i]);
         }
+        console.log(codigosIngreso)
         await libro.toFileAsync(`./codigos/${nombre}_ED.xlsx`);
     } catch (error) {
         throw new Error("Error al escribir el nuevo archivo" + error);
@@ -47,8 +42,6 @@ async function escrituraExcel(nombre) {
 
 module.exports = {
     escrituraExcel,
-    lecturaExcel,
-    codigosIngreso,
-    cantidades
+    lecturaExcel
 }
 

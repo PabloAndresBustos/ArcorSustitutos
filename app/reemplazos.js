@@ -1,5 +1,3 @@
-let { codigosIngreso } = require("./excel");
-
 const codigosViejos = [
     1013890,
     1013939,
@@ -16,16 +14,15 @@ const codigosNuevos = [
     1014219,
     1014324];
 
-let mensajesReemplazo = [];
 
-async function reemplazo() {
-    for (let i = 0; i < codigosIngreso.length; i++) {
+async function reemplazo(lista) {
+    for (let i = 0; i < lista.length; i++) {
         for (let j = 0; j < codigosViejos.length; j++) {
-            if (codigosIngreso[i] === codigosViejos[j]) {
-                mensajesReemplazo.push("El código " + codigosViejos[j] +
+            if (lista[i] === codigosViejos[j]) {
+                console.log("El código " + codigosViejos[j] +
                     " se reemplazó por el: " + codigosNuevos[j] +
                     " en la lista ingresada");
-                codigosIngreso[i] = codigosNuevos[j];
+                lista[i] = codigosNuevos[j];
             }
         }
     }
@@ -33,11 +30,5 @@ async function reemplazo() {
 
 
 module.exports = {
-    reemplazo,
-    mensajesReemplazo
+    reemplazo
 }
-
-
-
-
-

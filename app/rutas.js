@@ -3,7 +3,7 @@ const path = require('path');
 const fs = require('fs');
 const { subir } = require('./multer');
 const { lecturaExcel, escrituraExcel } = require('./excel');
-const { reemplazo, mensajesReemplazo } = require('./reemplazos');
+const { reemplazo } = require('./reemplazos');
 const router = express.Router();
 
 router.get('/', (req, res) => {
@@ -52,7 +52,6 @@ router.post('/upload', subir.single('ingreso'), async (req, res) => {
     const nombre = (req.file.filename).split('.')[0];
     try {
         await lecturaExcel(ruta);
-        await reemplazo();
         await escrituraExcel(nombre);
         res.redirect(`/download/${nombre}_ED.xlsx`);
     } catch (error) {
