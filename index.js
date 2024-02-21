@@ -1,6 +1,8 @@
+require('dotenv').config();
 const express = require('express');
 const { router } = require('./app/rutas');
 const path = require('path');
+
 
 const app = express();
 
@@ -11,4 +13,4 @@ app.use('/', router);
 
 console.log(path.join(__dirname, 'codigos'));
 
-app.listen(3001, () => console.log("Escuchando en el puerto 3001"));
+app.listen(process.env.PORT, () => console.log("Escuchando en el puerto: " + process.env.PORT));
