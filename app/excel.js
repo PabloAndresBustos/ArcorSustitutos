@@ -1,5 +1,6 @@
 const excel = require('xlsx-populate');
 const { reemplazo } = require('./reemplazos');
+const path = require('path');
 
 let codigosIngreso = [];
 let cantidades = [];
@@ -34,7 +35,8 @@ async function escrituraExcel(nombre) {
             libro.sheet(0).cell("B" + `${i + 1}`).value(cantidades[i]);
         }
         console.log(codigosIngreso)
-        await libro.toFileAsync(`./codigos/${nombre}_ED.xlsx`);
+        const ruta = path.join(__dirname, '../codigos');
+        await libro.toFileAsync(`${ruta}/${nombre}_ED.xlsx`);
     } catch (error) {
         throw new Error("Error al escribir el nuevo archivo" + error);
     }
