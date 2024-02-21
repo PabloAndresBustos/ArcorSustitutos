@@ -11,9 +11,9 @@ router.get('/', (req, res) => {
 
 router.get('/download/:nombre', async (req, res) => {
     const nombre = req.params.nombre;
-    const rutaInterna = path.join(__dirname, '..', 'codigos', nombre);
+    const rutaInterna = path.join(__dirname, 'codigos', nombre);
     const nombreOriginal = (nombre.split('_')[0] + ".xlsx");
-    const rutaOriginal = path.join(__dirname, '..', 'codigos', nombreOriginal);
+    const rutaOriginal = path.join(__dirname, 'codigos', nombreOriginal);
 
     fs.access(rutaInterna, fs.constants.F_OK, (err) => {
         if (err) {
