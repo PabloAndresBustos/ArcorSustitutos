@@ -50,6 +50,7 @@ router.get('/download/:nombre', async (req, res) => {
 
 router.post('/upload', subir.single('ingreso'), async (req, res) => {
     const ruta = req.file.path;
+    console.log(ruta);
     const nombre = (req.file.filename).split('.')[0];
     console.log(subir);
     try {
