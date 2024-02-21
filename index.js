@@ -9,6 +9,6 @@ app.set('views', './views');
 app.use(express.static('./public'));
 app.use('/', router);
 
-console.log(path.join(__dirname, __dirname));
+console.log(path.join(__dirname, 'codigos'));
 
 app.listen(3001, () => console.log("Escuchando en el puerto 3001"));
