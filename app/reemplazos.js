@@ -16,7 +16,7 @@ const codigosNuevos = [
     1014219,
     1014324];
 
-const mensajesReemplazo = [];
+let mensajesReemplazo = [];
 
 async function reemplazo() {
     for (let i = 0; i < codigosIngreso.length; i++) {
