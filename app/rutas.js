@@ -15,6 +15,8 @@ router.get('/download/:nombre', async (req, res) => {
     const nombreOriginal = (nombre.split('_')[0] + ".xlsx");
     const rutaOriginal = path.join(__dirname, '..', 'codigos', nombreOriginal);
 
+    console.log("Descarga")
+
     fs.access(rutaInterna, fs.constants.F_OK, (err) => {
         if (err) {
             res.send("El archivo no existe");
@@ -49,9 +51,12 @@ router.get('/download/:nombre', async (req, res) => {
 router.post('/upload', subir.single('ingreso'), async (req, res) => {
     const ruta = req.file.path;
     const nombre = (req.file.filename).split('.')[0];
+    console.log(subir);
     try {
         await lecturaExcel(ruta);
+        console.log("Leido")
         await escrituraExcel(nombre);
+        console.log("Escrito")
         res.redirect(`/download/${nombre}_ED.xlsx`);
     } catch (error) {
         throw new Error("Error en la subida" + error)
