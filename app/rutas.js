@@ -3,10 +3,11 @@ const path = require('path');
 const fs = require('fs');
 const { subir } = require('./multer');
 const { lecturaExcel, escrituraExcel } = require('./excel');
+
 const router = express.Router();
 
 router.get('/', (req, res) => {
-    res.render("pages");
+    res.render("pages", {mensajes : mensajes});
 });
 
 router.get('/download/:nombre', async (req, res) => {
@@ -14,8 +15,9 @@ router.get('/download/:nombre', async (req, res) => {
     const rutaInterna = path.join(__dirname, '..', 'codigos', nombre);
     const nombreOriginal = (nombre.split('_')[0] + ".xlsx");
     const rutaOriginal = path.join(__dirname, '..', 'codigos', nombreOriginal);
-
+       
     fs.access(rutaInterna, fs.constants.F_OK, (err) => {
+
         if (err) {
             res.send("El archivo no existe");
         }
@@ -42,7 +44,7 @@ router.get('/download/:nombre', async (req, res) => {
                 }
             })
         })
-    })
+    })   
 
 });
 
@@ -57,7 +59,6 @@ router.post('/upload', subir.single('ingreso'), async (req, res) => {
         throw new Error("Error en la subida" + error)
     }
 });
-
 
 module.exports = {
     router

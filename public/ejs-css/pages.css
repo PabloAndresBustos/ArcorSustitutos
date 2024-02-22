@@ -1,22 +1,41 @@
 body{
     display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    background-color: #2c2a2a;
+    background-color: #ffffff;
     font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 }
 
-.centro{
+.container{
     display: flex;
-    flex-direction: column;
+    justify-content: space-around;
+    width: 100%;
+}
+
+.centro{
+    float: left;
     margin-top: 4rem;
     max-width: fit-content;
-    border: 3px solid #fff;
     border-radius: 5px;
     -webkit-box-shadow: -14px 12px 19px -6px rgba(203, 213, 238, 0.57);
     -moz-box-shadow: -14px 12px 19px -6px rgba(202, 213, 241, 0.57);
     box-shadow: -14px 12px 19px -6px rgba(185, 200, 238, 0.57);
+}
+
+.info{
+    display: none;
+    float: right;
+    margin-top: 4rem;
+    width: 450px;
+    border-radius: 5px;
+    -webkit-box-shadow: -14px 12px 19px -6px rgba(203, 213, 238, 0.57);
+    -moz-box-shadow: -14px 12px 19px -6px rgba(202, 213, 241, 0.57);
+    box-shadow: -14px 12px 19px -6px rgba(185, 200, 238, 0.57);
+    
+}
+
+.info_text{
+    height: 380px;
+    margin-left: 1rem;
+    overflow-y: scroll;
 }
 
 h1{
@@ -26,35 +45,31 @@ h1{
 form{
     display: flex;
     flex-direction: column;
-    align-items: center;
-    justify-content: center;
+    align-items: flex-start;
 }
 
 label{
-    color: #b8a0a0;
+    margin-left: 2rem;
+    font-weight: bold;
 }
 
 input{
     margin-top: 0.5rem;
+    margin-left: 2rem;
 }
 
 button{
-    border: 1px solid #b8a0a0;
-    background: none;
+    border: none;
+    background: #383e9b;
     width: 100%;
     height: 60px;
     margin-top: 2rem;
     font-size: 30px;
     color: #fff;
+    font-weight: bold;
 }
 
 button:hover{
     cursor: pointer;
-    background-color: #fff;
-    color: #2c2a2a;
-}
-
-p{
-    color: red;
-    max-width: 40ch;
+    background-color: #5058c5;
 }

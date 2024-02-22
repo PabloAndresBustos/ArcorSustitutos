@@ -32,8 +32,7 @@ async function reemplazo(lista) {
         for (let j = 0; j < codigosViejos.length; j++) {
             if (lista[i] === codigosViejos[j]) {
                 console.log("El código " + codigosViejos[j] +
-                    " se reemplazó por el: " + codigosNuevos[j] +
-                    " en la lista ingresada");
+                    " se reemplazó por el: " + codigosNuevos[j]);
                 lista[i] = codigosNuevos[j];
             }
         }
@@ -42,5 +41,6 @@ async function reemplazo(lista) {
 
 
 module.exports = {
-    reemplazo
+    reemplazo,
+    mensajes
 }

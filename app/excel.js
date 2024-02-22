@@ -1,5 +1,5 @@
 const excel = require('xlsx-populate');
-const { reemplazo } = require('./reemplazos');
+const { reemplazo, mensajes } = require('./reemplazos');
 const path = require('path');
 
 let codigosIngreso = [];
@@ -38,6 +38,7 @@ async function escrituraExcel(nombre) {
     } catch (error) {
         throw new Error("Error al escribir el nuevo archivo" + error);
     }
+
 }
 
 module.exports = {
