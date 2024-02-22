@@ -7,7 +7,7 @@ const { lecturaExcel, escrituraExcel } = require('./excel');
 const router = express.Router();
 
 router.get('/', (req, res) => {
-    res.render("pages", {mensajes : mensajes});
+    res.render("pages");
 });
 
 router.get('/download/:nombre', async (req, res) => {

@@ -41,6 +41,5 @@ async function reemplazo(lista) {
 
 
 module.exports = {
-    reemplazo,
-    mensajes
+    reemplazo
 }
