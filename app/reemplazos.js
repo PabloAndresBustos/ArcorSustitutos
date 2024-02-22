@@ -10,7 +10,7 @@ const codigosViejos = [
     1013896,
     1013895,
     1013893,
-    1013893];
+    1013892];
 
 const codigosNuevos = [
     1014336,
