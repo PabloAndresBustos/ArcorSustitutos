@@ -36,6 +36,8 @@ async function reemplazo(lista, info) {
                 lista[i] = codigosNuevos[j];
                 info.push("El código " + codigosViejos[j] +
                 " se reemplazó por el: " + codigosNuevos[j]);
+            }else{
+                info.push("Este archivo no tiene codigos a reemplazar");
             }
         }
     }
