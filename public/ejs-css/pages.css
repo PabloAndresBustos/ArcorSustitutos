@@ -21,7 +21,6 @@ body{
 }
 
 .info{
-    display: none;
     float: right;
     margin-top: 4rem;
     width: 450px;
@@ -30,6 +29,18 @@ body{
     -moz-box-shadow: -14px 12px 19px -6px rgba(202, 213, 241, 0.57);
     box-shadow: -14px 12px 19px -6px rgba(185, 200, 238, 0.57);
     
+}
+
+.botonera{
+    display: flex;
+}
+
+#copy{
+    width: 225px;
+}
+
+.download{
+    width: 225px;
 }
 
 .info_text{
@@ -42,7 +53,7 @@ h1{
     margin-left: 15%;
 }
 
-form{
+.formulario{
     display: flex;
     flex-direction: column;
     align-items: flex-start;
@@ -61,6 +72,7 @@ input{
 button{
     border: none;
     background: #383e9b;
+    border-radius: 5px;
     width: 100%;
     height: 60px;
     margin-top: 2rem;

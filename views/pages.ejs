@@ -13,7 +13,7 @@
         <div class="centro">
             <img src="imagenes/logo.png" alt="">
             <h1>ARCOR SUSTITUTOS</h1>
-            <form action="/upload" method="post" enctype="multipart/form-data" id="formulario">
+            <form action="/upload" method="post" enctype="multipart/form-data" class="formulario">
                 <label for="ingreso">Archivo a analizar</label>
                 <input type="file" name="ingreso" id="ingreso">
                 <button type="submit" id="boton">Enviar</button>
@@ -21,8 +21,16 @@
         </div>
         <div class="info">
             <div class="info_text">
+                <% mensajes.forEach(function(mensaje){ %>
+                    <p><%= mensaje %></p>
+                <% }); %>
             </div>
-            <button id="boton">Copiar</button>
+            <div class="botonera">
+                <button id="copy">Copiar</button>
+                <form action="/download" method="get" class="download">
+                    <button type="submit" id="download">Descargar</button>
+                </form>
+            </div>
         </div>
     </section>
 </body>

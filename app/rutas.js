@@ -6,15 +6,18 @@ const { lecturaExcel, escrituraExcel } = require('./excel');
 
 const router = express.Router();
 
+let nombreArchivo = '';
+let mensajes = [];
+
 router.get('/', (req, res) => {
-    res.render("pages");
+    console.log("paso 1 - inicio"+ mensajes)
+    res.render("pages", {mensajes : mensajes});
 });
 
-router.get('/download/:nombre', async (req, res) => {
-    const nombre = req.params.nombre;
-    const rutaInterna = path.join(__dirname, '..', 'codigos', nombre);
-    const nombreOriginal = (nombre.split('_')[0] + ".xlsx");
-    const rutaOriginal = path.join(__dirname, '..', 'codigos', nombreOriginal);
+router.get('/download', async (req, res) => {
+    const nombre = nombreArchivo;
+    const rutaInterna = path.join(__dirname, '..', 'codigos', nombre + '_ED.xlsx');
+    const rutaOriginal = path.join(__dirname, '..', 'codigos', nombre + '.xlsx');
        
     fs.access(rutaInterna, fs.constants.F_OK, (err) => {
 
@@ -26,9 +29,7 @@ router.get('/download/:nombre', async (req, res) => {
             if (err) {
                 res.send("Error al descargar el archivo");
             }
-        })
 
-        res.on('close', () => {
             fs.unlink(rutaInterna, (err) => {
                 if (err) {
                     console.error("Error al eliminar el archivo editado");
@@ -43,9 +44,10 @@ router.get('/download/:nombre', async (req, res) => {
                     console.log("Archivo original eliminado");
                 }
             })
+            mensajes = [];
+            console.log("Paso 4 - download" + mensajes)
         })
-    })   
-
+    })
 });
 
 router.post('/upload', subir.single('ingreso'), async (req, res) => {
@@ -53,8 +55,9 @@ router.post('/upload', subir.single('ingreso'), async (req, res) => {
     const ruta = path.join(__dirname, '..', 'codigos', req.file.filename);
     try {
         await lecturaExcel(ruta);
-        await escrituraExcel(nombre);
-        res.redirect(`/download/${nombre}_ED.xlsx`);
+        await escrituraExcel(nombre, mensajes);
+        nombreArchivo = nombre;
+        res.render('pages', {mensajes: mensajes});
     } catch (error) {
         throw new Error("Error en la subida" + error)
     }

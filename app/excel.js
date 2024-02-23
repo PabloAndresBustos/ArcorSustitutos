@@ -1,5 +1,5 @@
 const excel = require('xlsx-populate');
-const { reemplazo, mensajes } = require('./reemplazos');
+const { reemplazo } = require('./reemplazos');
 const path = require('path');
 
 let codigosIngreso = [];
@@ -24,10 +24,11 @@ async function lecturaExcel(archivo) {
 
 }
 
-async function escrituraExcel(nombre) {
-
+async function escrituraExcel(nombre, listaInfo) {
+    
     try {
-        await reemplazo(codigosIngreso);
+        await reemplazo(codigosIngreso, listaInfo);
+        console.log("Paso 3 - Escritura: " + listaInfo)
         const libro = await excel.fromBlankAsync();
         const ruta = path.join(__dirname, '..', 'codigos')
         for (i = 0; i < codigosIngreso.length; i++) {

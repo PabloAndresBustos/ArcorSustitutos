@@ -27,18 +27,21 @@ const codigosNuevos = [
     1014248];
 
 
-async function reemplazo(lista) {
+async function reemplazo(lista, info) {
+    console.log("mensajes: " + info)
+
     for (let i = 0; i < lista.length; i++) {
         for (let j = 0; j < codigosViejos.length; j++) {
             if (lista[i] === codigosViejos[j]) {
-                console.log("El código " + codigosViejos[j] +
-                    " se reemplazó por el: " + codigosNuevos[j]);
                 lista[i] = codigosNuevos[j];
+                info.push("El código " + codigosViejos[j] +
+                " se reemplazó por el: " + codigosNuevos[j]);
             }
         }
     }
+    
+    console.log("Paso 2 en reemplazo: " + info)
 }
-
 
 module.exports = {
     reemplazo
